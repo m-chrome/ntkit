@@ -71,5 +71,4 @@ def jacobi_symbol(a, m):
             y = c
         else:
             break
-
     return s
