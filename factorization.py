@@ -5,14 +5,14 @@ from math import sqrt
 # Find two dividers of number with Fermat method
 def fermat_method(number):
     h = ceil(sqrt(number))
-    if h ** 2 == number:
+    if pow(h, 2) == number:
         return h, h
 
     p, q = 0, 0
     x = h
     while True:
-        v = x ** 2 - number
-        if v == int(sqrt(v)) ** 2:
+        v = pow(x, 2) - number
+        if v == pow(int(sqrt(v)), 2):
             y = int(sqrt(v))
             p = x + y
             q = x - y

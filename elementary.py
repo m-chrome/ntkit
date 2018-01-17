@@ -47,7 +47,7 @@ def jacobi_symbol(a, m):
 
     if a < 0:
         x *= -1
-        s = (-1) ** int((m-1) / 2)
+        s = pow(-1, int((m-1) / 2))
 
     while True:
         c = x % y
@@ -62,10 +62,10 @@ def jacobi_symbol(a, m):
             t += 1
 
         if t % 2 == 1:
-            s *= (-1) ** int((y ** 2 - 1) / 8)
+            s *= pow(-1, int((y ** 2 - 1) / 8))
 
         if x > 1:
-            s *= (-1) ** int((x - 1) * (y - 1) / 4)
+            s *= pow(-1, int((x - 1) * (y - 1) / 4))
             c = x
             x = y
             y = c
