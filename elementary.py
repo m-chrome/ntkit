@@ -24,19 +24,19 @@ def extended_euclid_algo(a, n):
     return a, x2, y2
 
 
-def find_inverted_element(element, module):
-    if module < 2:
-        return ERROR_NO_INV_ELEM_MSG.format(element, module)
+def find_inverted_element(element, r_module):
+    if r_module < 2:
+        return ERROR_NO_INV_ELEM_MSG.format(element, r_module)
 
     if element == 1:
         return 1
 
-    cur_gcd, inverted, _ = extended_euclid_algo(element, module)
+    cur_gcd, inverted, _ = extended_euclid_algo(element, r_module)
 
     if cur_gcd > 1:
-        return ERROR_NO_INV_ELEM_MSG.format(element, module)
+        return ERROR_NO_INV_ELEM_MSG.format(element, r_module)
     else:
-        return inverted if inverted > 0 else module + inverted
+        return inverted if inverted > 0 else r_module + inverted
 
 
 def jacobi_symbol(a, m):
@@ -47,7 +47,7 @@ def jacobi_symbol(a, m):
 
     if a < 0:
         x *= -1
-        s = pow(-1, int((m-1) / 2))
+        s = pow(-1, (m-1) // 2)
 
     while True:
         c = x % y
@@ -58,14 +58,14 @@ def jacobi_symbol(a, m):
             return 1
 
         while x % 2 == 0:
-            x = int(x / 2)
+            x = x // 2
             t += 1
 
         if t % 2 == 1:
-            s *= pow(-1, int((y ** 2 - 1) / 8))
+            s *= pow(-1, (pow(y, 2) - 1) // 8)
 
         if x > 1:
-            s *= pow(-1, int((x - 1) * (y - 1) / 4))
+            s *= pow(-1, ((x - 1) * (y - 1)) // 4)
             c = x
             x = y
             y = c
