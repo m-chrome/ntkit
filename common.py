@@ -3,6 +3,16 @@ from math import gcd
 ERROR_NO_INV_ELEM_MSG = "No inverted element for {0} in rind mod {1}"
 
 
+# Find power of 2 in number
+def factorize_by_two(number):
+    n = number
+    power = 0
+    while n % 2 == 0:
+        power += 1
+        n //= 2
+    return power, n
+
+
 def extended_euclid_algo(a, n):
     if n == 0:
         return a, 1, 0

@@ -1,6 +1,8 @@
 from math import gcd
 from random import randint
-from elementary import jacobi_symbol
+
+from common import jacobi_symbol
+from common import factorize_by_two
 
 
 def solovay_primality_test(n, k=10):
@@ -8,20 +10,9 @@ def solovay_primality_test(n, k=10):
         a = randint(1, n-1)
         if gcd(a, n) > 1:
             return False
-        pows = pow(a, ((n-1)//2), n)
-        jac = jacobi_symbol(a, n) % n
-        if pows != jac:
+        if pow(a, ((n-1)//2), n) != jacobi_symbol(a, n) % n:
             return False
     return True
-
-
-def factorize_by_two(number):
-    n = 0
-    q = number
-    while q % 2 == 0:
-        q //= 2
-        n += 1
-    return n, int(q)
 
 
 def miller_rabin_primality_test(number, k=10):
