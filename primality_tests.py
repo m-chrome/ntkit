@@ -38,3 +38,29 @@ def miller_rabin_primality_test(number, k=10):
                     continue
         if k == 0:
             return True
+
+
+# dividers = list of unique primes divide number-1
+def lucas_primality_test(number, dividers, c=20):
+    n = len(dividers)
+    k = 0
+    used_random = set()
+    while c > 0:
+        while True:
+            a = randint(1, number-1)
+            if a in used_random:
+                continue
+            break
+        used_random.add(a)
+        if gcd(a, number) != 1:
+            return False
+        while k < n:
+            if pow(a, number-1, number) != 1:
+                return False
+            if pow(a, (number-1)//dividers[k], number) == 1:
+                k = 0
+                c -= 1
+                break
+            k += 1
+        return True
+    return None
