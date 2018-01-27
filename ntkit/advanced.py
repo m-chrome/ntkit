@@ -1,5 +1,5 @@
-import factorization
-import primality_tests
+from . import factorization
+from . import primality_tests
 
 
 def full_factorize(number, fact_method=factorization.fermat_method,

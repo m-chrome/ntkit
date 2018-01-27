@@ -1,8 +1,8 @@
 from math import gcd
 from random import randint
 
-from common import jacobi_symbol
-from common import factorize_by_two
+from .common import jacobi_symbol
+from .common import factorize_by_two
 
 
 def solovay_primality_test(n, k=10):
