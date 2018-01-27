@@ -2,7 +2,7 @@ from math import ceil
 from math import floor
 from math import sqrt
 
-from common import factorize_by_two
+from .common import factorize_by_two
 
 
 # Find two dividers of number with Fermat method
