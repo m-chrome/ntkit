@@ -1,7 +1,5 @@
 from math import gcd
 
-ERROR_NO_INV_ELEM_MSG = "No inverted element for {0} in rind mod {1}"
-
 
 # Find power of 2 in number
 def factorize_by_two(number):
@@ -36,7 +34,7 @@ def extended_euclid_algo(a, n):
 
 def find_inverted_element(element, r_module):
     if r_module < 2:
-        return ERROR_NO_INV_ELEM_MSG.format(element, r_module)
+        return None
 
     if element == 1:
         return 1
@@ -44,7 +42,7 @@ def find_inverted_element(element, r_module):
     cur_gcd, inverted, _ = extended_euclid_algo(element, r_module)
 
     if cur_gcd > 1:
-        return ERROR_NO_INV_ELEM_MSG.format(element, r_module)
+        return None
     else:
         return inverted if inverted > 0 else r_module + inverted
 
