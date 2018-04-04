@@ -1,6 +1,8 @@
 from math import ceil
+from math import gcd
 from math import floor
 from math import sqrt
+from random import randint
 
 from .common import factorize_by_two
 
@@ -24,6 +26,35 @@ def fermat_method(number):
         v += 2 * h + 1
 
     return p, q
+
+
+# Brent factorization method
+# Find two dividers or None
+def brent_method(number, c, polynomial=(1, 0, 1)):
+    x = randint(0, number - 1)
+    z = 0
+    n = 0
+    k = 0
+    t = 1
+    while True:
+        fx = 0
+        for idx, coef in enumerate(polynomial):
+            fx += coef * pow(x, idx) % number
+        x = fx
+        n += 1
+        if n == t:
+            z = x
+            k += 1
+            t *= 2
+            if k > c:
+                return None
+            else:
+                continue
+        p = gcd(number, z - fx)
+        if number > p > 1:
+            return p, number // p
+        else:
+            continue
 
 
 def factorize_recursively(number, method, dividers):
